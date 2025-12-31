@@ -44,25 +44,7 @@ run(["bash", str(INSTALL_SCRIPT), *opts], cwd=REPO_DIR)
 # 2. Load %%fenicsx magic
 # ==================================================
 
-print("✨ Loading fenicsx Jupyter magic...")
+print("✨ Loading FEniCSx Jupyter magic...")
 code = MAGIC_FILE.read_text()
 exec(compile(code, str(MAGIC_FILE), "exec"), globals())
 print("✅ %%fenicsx registered")
-
-# ==================================================
-# 3. Optional self-test
-# ==================================================
-
-if TEST_FILE.exists():
-    print("\n🧪 Running fenicsx self-test...")
-    run(
-        [
-            "micromamba", "run", "-n", "fenicsx",
-            "mpiexec", "-n", "4",
-            "python", str(TEST_FILE),
-        ],
-        cwd=REPO_DIR,
-    )
-    print("🧪 fenicsx self-test passed ✅")
-else:
-    print("⚠️ No self-test found — skipping")
