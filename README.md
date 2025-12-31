@@ -95,4 +95,14 @@ else:
     print(f"Hello from rank {comm.rank}")
 ```
 
+```
+Hello from rank 1
+Hello from rank 0
+  dolfinx : 0.10.0
+  MPI size: 4
+⏱ Elapsed time: 1.783023 s
+Hello from rank 2
+Hello from rank 3
+```
+
 This will print the rank output in order and measure elapsed time on rank `0`.
