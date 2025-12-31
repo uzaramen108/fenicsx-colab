@@ -1,39 +1,62 @@
-# fenicsx-colab
+# FEniCSx Colab Quick Start
 
-FEniCSx + micromamba 환경을 Google Colab에서
-**Drive 캐시 기반으로 빠르게 재사용**하기 위한 설정입니다.
+This single cell will set up FEniCSx on Google Colab and
+register the `%%fenicsx` Jupyter cell magic.
+
+**Features**
+
+- 🖥 micromamba executable: `/content/micromamba/bin/micromamba` (Colab local)
+- 💾 Package cache: Google Drive `/content/drive/MyDrive/mamba_pkgs`
+- 🔄 Safe for repeated runs: existing repo/env will be skipped
+- 🧹 `--clean` option to force environment reinstallation
 
 ---
 
-## 1. Google Drive 마운트 (필수)
-
 ```python
+# ==================================================
+# 1️⃣ Mount Google Drive (for cache)
+# ==================================================
 from google.colab import drive
-drive.mount('/content/drive')
+import os
+
+if not os.path.ismount("/content/drive"):
+    drive.mount("/content/drive")
+
+# ==================================================
+# 2️⃣ Clone repository (skip if exists)
+# ==================================================
+!git clone https://github.com/seoultechpse/fenicsx-colab.git /content/fenicsx-colab \
+  || echo "📦 Repo exists — skipping"
+
+# ==================================================
+# 3️⃣ Run setup (install FEniCSx environment + %%fenicsx magic)
+# ==================================================
+!python /content/fenicsx-colab/setup_fenicsx.py --clean
 ```
 
-## 2. 원클릭 설치
+### Usage Examples
 
-```python
-%run setup_fenicsx.py
-```
-
-## 3. 옵션
-
-- 강제 재설치
-
-```python
-%run setup_fenicsx.py --force
-```
-
-- 완전 초기화
-
-```python
-%run setup_fenicsx.py --clean
-```
-
-## 4. 테스트
+- Displays MPI implementation, Python version, FEniCSx version, and active environment info.
 
 ```python
 %%fenicsx --info
 ```
+
+- Runs your FEniCSx code using 4 MPI ranks.
+
+```python
+%%fenicsx --np 4
+import dolfinx
+print("Hello from 4 MPI ranks!")
+```
+
+### Options
+
+- `--clean` : Remove existing environment and reinstall from scratch.
+- `--time` : Measure execution time of the cell.
+
+### Notes
+
+- `micromamba` executable is local (`/content/micromamba/bin/micromamba`)
+- Only package cache is stored on Drive (`/content/drive/MyDrive/mamba_pkgs`)
+- Avoid placing the `micromamba` executable itself on Drive (permission issues may occur).
