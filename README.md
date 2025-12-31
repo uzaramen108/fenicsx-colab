@@ -72,20 +72,15 @@ except Exception as e:
 ## Notes
 
 1. Goolge Drive cache
-
-- Initial mount required; repeated runs are safe
-
-2. --clean
-
-- Set `USE_CLEAN = True` to remove existing FEniCSx environment and reinstall
-- Default `False` preserves the environment and is faster
-
-3. Cell magic
-
-- After setup, you can use `%%fenicsx` in Colab for parallel MPI computations
-- Options:
-  - `-np N` → number of MPI ranks
-  - `--time` → measure elapsed time
+   - Initial mount required; repeated runs are safe
+1. `--clean`
+   - Set `USE_CLEAN = True` to remove existing FEniCSx environment and reinstall
+   - Default `False` preserves the environment and is faster
+1. Cell magic
+   - After setup, you can use `%%fenicsx` in Colab for parallel MPI computations
+   - Options:
+     - `-np N` → number of MPI ranks
+     - `--time` → measure elapsed time
 
 ### Example usage:
 
@@ -105,4 +100,4 @@ else:
     print(f"Hello from rank {comm.rank}")
 ```
 
-This will print the rank output in order and measure elapsed time on rank 0.
+This will print the rank output in order and measure elapsed time on rank `0`.
