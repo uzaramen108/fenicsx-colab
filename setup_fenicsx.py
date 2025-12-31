@@ -24,7 +24,7 @@ def run(cmd, cwd=None):
         capture_output=True,
         text=True
     )
-    print(f"   {result.stdout}")
+    return result
 
 # ==================================================
 # Sanity checks
