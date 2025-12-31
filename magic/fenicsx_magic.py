@@ -94,7 +94,7 @@ import dolfinx, sys, platform, os
 
 comm = MPI.COMM_WORLD
 if comm.rank == 0:
-    print("🐍 Python          :", sys.version.split()[0])
+    print("\n🐍 Python          :", sys.version.split()[0])
     print("📦 dolfinx         :", dolfinx.__version__)
     print("💻 Platform        :", platform.platform())
     print("🧵 Running as root :", os.geteuid() == 0)
