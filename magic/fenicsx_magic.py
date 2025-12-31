@@ -99,11 +99,11 @@ import dolfinx, sys, platform, os
 
 comm = MPI.COMM_WORLD
 if comm.rank == 0:
-    print("🐍 Python         :", sys.version.split()[0])
-    print("📦 dolfinx        :", dolfinx.__version__)
-    print("💻 Platform       :", platform.platform())
-    print("🧵 MPI size       :", comm.size)
-    print("🧵 Running as root:", os.geteuid() == 0)
+    print("🐍 Python          :", sys.version.split()[0])
+    print("📦 dolfinx         :", dolfinx.__version__)
+    print("💻 Platform        :", platform.platform())
+    print("🧵 MPI size        :", comm.size)
+    print("🧵 Running as root :", os.geteuid() == 0)
 """
         with tempfile.NamedTemporaryFile("w", suffix=".py", delete=False) as f:
             f.write(info_code)
