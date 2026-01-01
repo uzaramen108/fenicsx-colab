@@ -1,1 +1,25 @@
-/fenicsx_env_backup.ipynb
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Jupyter
+.ipynb_checkpoints/
+
+# FEniCS / scientific output
+*.xdmf
+*.h5
+*.vtu
+*.pvd
+*.npy
+*.npz
+
+# Result directories
+results/
+output/
+
+# MPI / logs
+*.log
+
+# OS
+.DS_Store
